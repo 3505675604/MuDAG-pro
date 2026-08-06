@@ -1,0 +1,23 @@
+{
+  "METABRIC": {
+    "dataset_name": "METABRIC",
+    "n_samples": 1413,
+    "n_events": 820,
+    "c_index": 0.6714854891525043,
+    "predictions_csv": "/root/tf-logs/MuDAG-Pro/./outputs/reports/METABRIC_predictions.csv"
+  },
+  "SCAN-B": {
+    "dataset_name": "SCAN-B",
+    "n_samples": 2449,
+    "n_events": 219,
+    "c_index": 0.6773965228335045,
+    "predictions_csv": "/root/tf-logs/MuDAG-Pro/./outputs/reports/SCAN-B_predictions.csv"
+  },
+  "GEO-GSE2034": {
+    "dataset_name": "GEO-GSE2034",
+    "n_samples": 286,
+    "n_events": 107,
+    "c_index": 0.6496252549147565,
+    "predictions_csv": "/root/tf-logs/MuDAG-Pro/./outputs/reports/GEO-GSE2034_predictions.csv"
+  }
+}

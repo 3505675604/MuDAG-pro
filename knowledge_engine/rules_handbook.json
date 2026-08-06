@@ -1,0 +1,402 @@
+[
+  {
+    "source": "Costimulation_by_the_CD28_family",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "PIK3CA",
+    "delta": 1.5,
+    "pmid": "REF",
+    "confidence": 0.9
+  },
+  {
+    "source": "Costimulation_by_the_CD28_family",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "PIK3CA",
+    "delta": 1.5,
+    "pmid": "REF",
+    "confidence": 0.9
+  },
+  {
+    "source": "Costimulation_by_the_CD28_family",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "PIK3CA",
+    "delta": 1.5,
+    "pmid": "REF",
+    "confidence": 0.9
+  },
+  {
+    "source": "Costimulation_by_the_CD28_family",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "PIK3CA",
+    "delta": 1.5,
+    "pmid": "REF",
+    "confidence": 0.9
+  },
+  {
+    "source": "Destabilization_of_mRNA_by_Butyrate_Response_Factor_1_(BRF1)",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "AKT1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "Destabilization_of_mRNA_by_Butyrate_Response_Factor_1_(BRF1)",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "AKT1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "Destabilization_of_mRNA_by_Butyrate_Response_Factor_1_(BRF1)",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "AKT1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "Destabilization_of_mRNA_by_Butyrate_Response_Factor_1_(BRF1)",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "AKT1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "HALLMARK_APICAL_JUNCTION",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "PTEN",
+    "delta": -0.5,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "HALLMARK_APICAL_JUNCTION",
+    "target": "ALK1_signaling_events",
+    "gene": "PTEN",
+    "delta": -0.5,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "HALLMARK_APICAL_JUNCTION",
+    "target": "ALK2_signaling_events",
+    "gene": "PTEN",
+    "delta": -0.5,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "HALLMARK_XENOBIOTIC_METABOLISM",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "ESR1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_XENOBIOTIC_METABOLISM",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "ESR1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_XENOBIOTIC_METABOLISM",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "ESR1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_XENOBIOTIC_METABOLISM",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "ESR1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_DNA_REPAIR",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "TP53",
+    "delta": -0.4,
+    "pmid": "REF",
+    "confidence": 0.9
+  },
+  {
+    "source": "HALLMARK_DNA_REPAIR",
+    "target": "ALK1_signaling_events",
+    "gene": "TP53",
+    "delta": -0.4,
+    "pmid": "REF",
+    "confidence": 0.9
+  },
+  {
+    "source": "HALLMARK_DNA_REPAIR",
+    "target": "ALK2_signaling_events",
+    "gene": "TP53",
+    "delta": -0.4,
+    "pmid": "REF",
+    "confidence": 0.9
+  },
+  {
+    "source": "HALLMARK_E2F_TARGETS",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "MYC",
+    "delta": 1.6,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "HALLMARK_E2F_TARGETS",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "MYC",
+    "delta": 1.6,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "HALLMARK_E2F_TARGETS",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "MYC",
+    "delta": 1.6,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "HALLMARK_E2F_TARGETS",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "MYC",
+    "delta": 1.6,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "HALLMARK_ANDROGEN_RESPONSE",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "CCND1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_ANDROGEN_RESPONSE",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "CCND1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_ANDROGEN_RESPONSE",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "CCND1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_ANDROGEN_RESPONSE",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "CCND1",
+    "delta": 1.4,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_APOPTOSIS",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "ERBB2",
+    "delta": 1.5,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "HALLMARK_APOPTOSIS",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "ERBB2",
+    "delta": 1.5,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "HALLMARK_APOPTOSIS",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "ERBB2",
+    "delta": 1.5,
+    "pmid": "REF",
+    "confidence": 0.85
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "MAPK1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "MAPK1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "MAPK1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "MAPK1",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "MAPK3",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "MAPK3",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "MAPK3",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "ALK1_signaling_events",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "MAPK3",
+    "delta": 1.3,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "HALLMARK_APICAL_SURFACE",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "GATA3",
+    "delta": 1.2,
+    "pmid": "REF",
+    "confidence": 0.7
+  },
+  {
+    "source": "HALLMARK_APICAL_SURFACE",
+    "target": "Astrocytic_Glutamate-Glutamine_Uptake_And_Metabolism",
+    "gene": "GATA3",
+    "delta": 1.2,
+    "pmid": "REF",
+    "confidence": 0.7
+  },
+  {
+    "source": "HALLMARK_APICAL_SURFACE",
+    "target": "Fatty_acid__triacylglycerol__and_ketone_body_metabolism",
+    "gene": "GATA3",
+    "delta": 1.2,
+    "pmid": "REF",
+    "confidence": 0.7
+  },
+  {
+    "source": "HALLMARK_APICAL_SURFACE",
+    "target": "HALLMARK_DNA_REPAIR",
+    "gene": "GATA3",
+    "delta": 1.2,
+    "pmid": "REF",
+    "confidence": 0.7
+  },
+  {
+    "source": "HALLMARK_MYOGENESIS",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "RB1",
+    "delta": -0.5,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_MYOGENESIS",
+    "target": "ALK1_signaling_events",
+    "gene": "RB1",
+    "delta": -0.5,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_MYOGENESIS",
+    "target": "ALK2_signaling_events",
+    "gene": "RB1",
+    "delta": -0.5,
+    "pmid": "REF",
+    "confidence": 0.8
+  },
+  {
+    "source": "HALLMARK_APICAL_JUNCTION",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "NF1",
+    "delta": -0.6,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "HALLMARK_APICAL_JUNCTION",
+    "target": "ALK1_signaling_events",
+    "gene": "NF1",
+    "delta": -0.6,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "HALLMARK_APICAL_JUNCTION",
+    "target": "ALK2_signaling_events",
+    "gene": "NF1",
+    "delta": -0.6,
+    "pmid": "REF",
+    "confidence": 0.75
+  },
+  {
+    "source": "AlphaE_beta7_integrin_cell_surface_interactions",
+    "target": "HALLMARK_APOPTOSIS",
+    "gene": "CDH1",
+    "delta": -0.7,
+    "pmid": "REF",
+    "confidence": 0.7
+  },
+  {
+    "source": "AlphaE_beta7_integrin_cell_surface_interactions",
+    "target": "ALK1_signaling_events",
+    "gene": "CDH1",
+    "delta": -0.7,
+    "pmid": "REF",
+    "confidence": 0.7
+  },
+  {
+    "source": "AlphaE_beta7_integrin_cell_surface_interactions",
+    "target": "ALK2_signaling_events",
+    "gene": "CDH1",
+    "delta": -0.7,
+    "pmid": "REF",
+    "confidence": 0.7
+  }
+]
