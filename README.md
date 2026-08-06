@@ -46,9 +46,9 @@ Place the following datasets into their respective subdirectories under `data/ra
 
 | Dataset | Samples | Data Types | Source |
 | --- | --- | --- | --- |
-| TCGA-BRCA | 1,094 | Expression + Mutation + Clinical | [GDC Portal](https://portal.gdc.cancer.gov/) |
-| METABRIC | 1,980 | Expression + Mutation + Clinical | [cBioPortal](https://www.cbioportal.org/) |
-| SCAN-B | 3,273 | Expression + Clinical | [GEO GSE96058](https://www.ncbi.nlm.nih.gov/geo/) |
+| TCGA-BRCA | 868 | Expression + Mutation + Clinical | [GDC Portal](https://portal.gdc.cancer.gov/) |
+| METABRIC | 1413 | Expression + Mutation + Clinical | [cBioPortal](https://www.cbioportal.org/) |
+| SCAN-B | 2449 | Expression + Clinical | [GEO GSE96058](https://www.ncbi.nlm.nih.gov/geo/) |
 | GEO GSE2034 | 286 | Expression + Clinical | [GEO GSE2034](https://www.ncbi.nlm.nih.gov/geo/) |
 | Reactome | — | Pathway Hierarchy | [Reactome Downloads](https://reactome.org/download-data/) |
 
