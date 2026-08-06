@@ -1,0 +1,236 @@
+# MuDAG-Pro base configuration file
+# Contains general hyperparameters such as settings for 331 Reactome pathways, propagation coefficient α, and Cox regularization parameter λ
+
+# ============================================================
+# Data configuration
+# ============================================================
+data:
+  root_dir: "./data"
+  raw_dir: "./data/raw"
+  processed_dir: "./data/processed"
+
+  # TCGA-BRCA dataset
+  tcga_brca:
+    expression_file: "datasets_csv/raw_rna_data/combine/brca/rna_clean.csv"
+    mutation_file: "data/processed/mutation_profiles/tcga_mutations.json"
+    clinical_file: "datasets_csv/metadata/tcga_brca.csv"
+    split_manifest_file: "data/processed/splits/tcga_brca_694_174_seed42.json"
+    split_seed: 42
+    n_samples: 868
+    n_events: 102
+    n_train: 694
+    n_test: 174
+
+  # METABRIC dataset
+  metabric:
+    expression_file: "data/raw/metabric/expression.csv"
+    mutation_file: "data/raw/metabric/mutation.csv"
+    clinical_file: "data/raw/metabric/clinical.csv"
+    n_samples: 1413
+    n_events: 820
+    n_censored: 593
+
+  # SCAN-B dataset
+  scan_b:
+    expression_file: "data/raw/scan_b/expression.csv"
+    clinical_file: "data/raw/scan_b/clinical.csv"
+    n_samples: 2449
+    n_events: 219
+    n_censored: 2230
+
+  # GEO GSE2034 dataset
+  geo_gse2034:
+    expression_file: "data/raw/geo_gse2034/expression.csv"
+    clinical_file: "data/raw/geo_gse2034/clinical.csv"
+    n_samples: 286
+    n_events: 107
+    n_censored: 179
+
+  # Reactome pathway database
+  reactome:
+    hierarchy_file: "data/raw/reactome/ReactomePathwaysRelation.txt"
+    pathway_names_file: "data/raw/reactome/ReactomePathways.txt"
+    gene_association_file: "data/raw/reactome/ReactomePathways.gmt"
+
+# ============================================================
+# Pathway configuration
+# ============================================================
+pathways:
+  # Number of core pathways (the actual data contains 3 core pathways)
+  n_core_pathways: 331
+
+  # Pathway gene-set file
+  geneset_file: "data/processed/pathway_genesets/pathway_genesets.json"
+
+  # Pathway activation score calculation
+  activation:
+    method: "within_sample_rank"
+    min_genes_per_pathway: 3
+    max_genes_per_pathway: 300
+
+# ============================================================
+# DAG configuration
+# ============================================================
+dag:
+  # Baseline DAG adjacency matrix
+  baseline_adj_file: "data/processed/baseline_dag/baseline_adj.npy"
+
+  # Reactome hierarchy
+  root_pathways:                        # Top-level pathways (Reactome root nodes)
+    - "R-HSA-1430728"   # Metabolism
+    - "R-HSA-1640170"   # Cell Cycle
+    - "R-HSA-168256"    # Immune System
+    - "R-HSA-382551"    # Signal Transduction
+    - "R-HSA-392499"    # Metabolism of proteins
+    - "R-HSA-5357801"   # Programmed Cell Death
+    - "R-HSA-8953897"   # Cellular responses to stimuli
+    - "R-HSA-73894"     # DNA Repair
+    - "R-HSA-1266738"   # Developmental Biology
+    - "R-HSA-162582"    # Signal Transduction
+
+  # Transitive closure
+  transitive_closure: true
+  sparsification_threshold: null         # No sparsification (retain all ancestor relationships)
+
+# ============================================================
+# Graph propagation configuration
+# ============================================================
+propagation:
+  alpha: 0.15                           # Propagation coefficient α (controls information transfer strength)
+  alpha_grid: [0.0]                    # TCGA-train CV selected no propagation
+  n_iterations: 3                       # Number of propagation iterations
+  propagation_type: "directional"       # Directed propagation (along DAG edge directions)
+  normalization: "degree"               # Normalize the adjacency matrix by out-degree
+
+# ============================================================
+# Cox proportional hazards model configuration
+# ============================================================
+cox:
+  model_type: "elastic_net_ensemble"
+  # Regularization
+  regularization: "elastic_net"
+  penalizer_range: [0.03, 0.05, 0.08]
+  l1_ratio_range: [0.05, 0.10, 0.20]
+  lambda_range: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]  # Grid-search range for λ
+  n_folds: 5                            # Number of cross-validation folds
+  cv_repeats: 3
+  min_selection_frequency: 0.6
+
+  # Optimizer
+  optimizer: "adam"
+  learning_rate: 0.001
+  max_epochs: 500
+  early_stopping_patience: 50
+  batch_size: 64
+
+  # Loss function
+  loss: "cox_partial_likelihood"        # Cox partial-likelihood loss
+
+# ============================================================
+# Knowledge engine configuration (LLM + RAG)
+# ============================================================
+knowledge_engine:
+  # PubMed retrieval
+  pubmed:
+    max_articles_per_query: 50
+    search_terms_file: "config/pubmed_search_terms.txt"
+    retmax: 100
+
+  # LLM configuration
+  llm:
+    model: "gpt-4"                      # Or "gpt-4-turbo", "gpt-3.5-turbo"
+    temperature: 0.0                    # Deterministic output
+    max_tokens: 2048
+
+  # RAG vector database
+  rag:
+    embedding_model: "text-embedding-ada-002"
+    chunk_size: 1000
+    chunk_overlap: 200
+    top_k_retrieval: 10
+
+  # Rule handbook
+  rules_handbook: "knowledge_engine/rules_handbook.json"
+
+  # Cycle detection
+  cycle_detection:
+    algorithm: "dfs"                    # Detect cycles with depth-first search
+    max_edges_per_rule: 5
+
+# ============================================================
+# Mutation processing configuration
+# ============================================================
+mutation:
+  # OncoKB annotation
+  oncokb_api: null                      # Provide an API key when needed
+  oncokb_annotated_file: "data/processed/mutation_profiles/oncokb_annotated.csv"
+
+  # Symbolic mutation signature
+  signature:
+    method: "binary"                    # Binarized (mutated/not mutated)
+    gene_panel_size: 468                # Target gene panel size
+    min_mutation_frequency: 0.01        # Minimum mutation-frequency filter
+
+# ============================================================
+# Personalized graph configuration
+# ============================================================
+personalized_graph:
+  # Rule matching
+  rule_matching_mode: "exact"           # Exact matching of mutated genes
+  default_penalty: 0.0                  # Default attenuation coefficient for unmatched edges
+  edge_penalty_range: [0.0, 1.0]       # Edge attenuation coefficient range
+
+# ============================================================
+# Evaluation configuration
+# ============================================================
+evaluation:
+  # Evaluation metrics
+  metrics:
+    - "c_index"
+    - "time_dependent_auc"
+    - "ibs"
+    - "nri"
+    - "idi"
+
+  # Time-dependent AUC
+  auc_times: [365, 1095, 1825, 2555]    # 1 year, 3 years, 5 years, 7 years
+
+  # Kaplan-Meier
+  km:
+    n_risk_groups: 2                    # Two groups: high and low risk
+    risk_split_method: "median"         # Split at the median
+
+  # SHAP
+  shap:
+    n_background_samples: 100
+    top_k_pathways: 20                  # Show the top 20 important pathways
+
+  # GSEA
+  gsea:
+    gene_set_libraries:
+      - "KEGG_2021_Human"
+      - "GO_Biological_Process_2021"
+      - "Reactome_2022"
+    n_permutations: 1000
+    fdr_threshold: 0.25
+
+# ============================================================
+# Ablation experiment configuration
+# ============================================================
+ablation:
+  variants:
+    - "M_static"                        # Static DAG (no personalized adjustment)
+    - "M_onehot"                        # One-hot mutation encoding instead of binary signatures
+    - "M_rand_dist"                     # Randomly perturb the adjacency matrix
+    - "M_inter"                         # Use pathway interactions only (no clinical features)
+    - "M_LOO"                           # Leave-One-Out edge-by-edge ablation
+
+# ============================================================
+# Output configuration
+# ============================================================
+output:
+  models_dir: "./outputs/models"
+  figures_dir: "./outputs/figures"
+  reports_dir: "./outputs/reports"
+  figure_format: "pdf"                  # Publication-quality vector graphics
+  figure_dpi: 300

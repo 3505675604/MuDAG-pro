@@ -1,0 +1,35 @@
+{
+  "_description": "LLM/RAG 检索与提取规则使用的 Prompt 模板",
+
+  "pubmed_search_query": {
+    "template": "You are a biomedical research assistant. Given a pair of Reactome pathways connected in a DAG:\nParent Pathway: {parent_pathway_name} ({parent_pathway_id})\nChild Pathway: {child_pathway_name} ({child_pathway_id})\n\nGenerate a PubMed search query to find literature evidence supporting or refuting a regulatory interaction between these two pathways in the context of breast cancer. Focus on:\n1. Direct molecular interactions (protein-protein, phosphorylation, transcriptional regulation)\n2. Genetic evidence (mutations, copy number alterations)\n3. Clinical associations in breast cancer cohorts\n\nReturn ONLY the PubMed query string, nothing else.",
+    "parameters": ["parent_pathway_name", "parent_pathway_id", "child_pathway_name", "child_pathway_id"]
+  },
+
+  "hypothetical_edge_search": {
+    "template": "You are searching for evidence of a potentially missing regulatory edge in a pathway hierarchy. The edge from {source_pathway} to {target_pathway} is NOT present in the Reactome database, but may have literature support.\n\nGenerate a focused PubMed query to find ANY evidence of:\n1. Cross-talk between {source_gene_list} (key genes in {source_pathway}) and {target_gene_list} (key genes in {target_pathway})\n2. Regulatory mechanisms connecting these pathways\n3. Shared pathway components or downstream effectors\n\nReturn a concise PubMed query string.",
+    "parameters": ["source_pathway", "target_pathway", "source_gene_list", "target_gene_list"]
+  },
+
+  "literature_extraction": {
+    "system_prompt": "You are an expert computational biologist specializing in pathway analysis and cancer systems biology. Your task is to extract structured regulatory relationships from biomedical literature abstracts.",
+    "extraction_prompt": "Read the following PubMed abstract(s) carefully. Extract any evidence of regulatory interactions between Reactome pathways in breast cancer.\n\nAbstract(s):\n{abstracts}\n\nFor each regulatory relationship you find, provide:\n1. **Source Pathway**: The upstream/regulating pathway (use Reactome pathway name/ID if mentioned)\n2. **Target Pathway**: The downstream/regulated pathway\n3. **Regulation Type**: One of [\"activates\", \"inhibits\", \"modulates\"]\n4. **Confidence Score**: A float between 0.0 and 1.0 indicating the strength of evidence\n   - 0.9-1.0: Direct experimental validation in breast cancer\n   - 0.7-0.89: Strong indirect evidence (e.g., known mechanism in related cancer)\n   - 0.5-0.69: Moderate evidence (e.g., correlation in expression data)\n   - 0.3-0.49: Weak/suggestive evidence\n   - 0.0-0.29: Mentioned but no supporting data\n5. **Evidence Summary**: One-sentence summary of the mechanistic evidence\n6. **PMID**: The PubMed ID of the source article\n7. **Edge Adjustment Factor** (gamma): A multiplicative factor for the DAG edge weight\n   - For activating interactions: 1.0 + (confidence * 0.5)  [range: 1.0-1.5]\n   - For inhibitory interactions: 1.0 - (confidence * 0.5)  [range: 0.5-1.0]\n   - For modulatory interactions: 1.0 + (confidence - 0.5)  [range: 0.5-1.5]\n\nReturn the extracted rules in JSON format:\n[\n  {{\n    \"source_pathway\": \"...\",\n    \"target_pathway\": \"...\",\n    \"regulation_type\": \"activates|inhibits|modulates\",\n    \"confidence\": 0.85,\n    \"evidence_summary\": \"...\",\n    \"pmid\": \"12345678\",\n    \"gamma\": 1.425\n  }}\n]",
+    "parameters": ["abstracts"]
+  },
+
+  "rule_validation": {
+    "template": "You are validating a candidate regulatory rule for addition to the Reactome pathway DAG. \n\nCandidate Rule:\n- Source: {source_pathway}\n- Target: {target_pathway}\n- Regulation: {regulation_type}\n- Confidence: {confidence}\n- Evidence: {evidence_summary}\n- PMID: {pmid}\n\nExisting DAG Context:\n- Current parents of {target_pathway}: {existing_parents}\n- Current children of {source_pathway}: {existing_children}\n- Path from source to target already exists: {path_exists}\n\nValidation Criteria:\n1. Is the evidence biologically plausible in the context of breast cancer?\n2. Would adding this edge create a biologically meaningful connection?\n3. Is the confidence score appropriate given the evidence?\n4. Should this edge be DIRECT (parent-child) or could it be an INDIRECT (grandparent-grandchild) relationship?\n\nRespond with:\n{{\n  \"accept\": true/false,\n  \"adjusted_confidence\": 0.0-1.0,\n  \"edge_type\": \"direct|indirect|reject\",\n  \"reasoning\": \"brief explanation\"\n}}",
+    "parameters": ["source_pathway", "target_pathway", "regulation_type", "confidence", "evidence_summary", "pmid", "existing_parents", "existing_children", "path_exists"]
+  },
+
+  "report_generation": {
+    "system_prompt": "You are an expert oncologist and computational pathologist generating a clinical decision report based on a machine learning model's predictions.",
+    "generation_prompt": "Patient Information:\n- Patient ID: {patient_id}\n- Predicted Risk Score (PI): {pi_score:.4f}\n- Risk Group: {risk_group}\n- Risk Percentile: {risk_percentile:.1f}%\n\nTop Contributing Pathways (SHAP):\n{shap_top_pathways}\n\nKey Mutations:\n{key_mutations}\n\nMatched Literature Rules:\n{matched_rules}\n\nPlease generate a clinically interpretable report including:\n1. **Risk Assessment**: Interpretation of the prognostic risk score\n2. **Molecular Rationale**: Explain which pathways and mutations drive this prediction\n3. **Biological Mechanism**: Connect the personalized DAG adjustments to known cancer biology (citing PMIDs)\n4. **Clinical Implications**: Potential implications for treatment stratification\n5. **Limitations & Caveats**: Important caveats about model interpretation\n\nWrite in professional medical report style suitable for oncologists.",
+    "parameters": ["patient_id", "pi_score", "risk_group", "risk_percentile", "shap_top_pathways", "key_mutations", "matched_rules"]
+  },
+
+  "dag_refinement_reasoning": {
+    "template": "You are analyzing whether specific gene mutations in a breast cancer patient should affect pathway connectivity in the Reactome DAG.\n\nPatient Mutation Signature:\n{mutated_genes}\n\nPathway Edge Under Consideration:\n- Source Pathway: {source_pathway} (key genes: {source_genes})\n- Target Pathway: {target_pathway} (key genes: {target_genes})\n\nLiterature Evidence:\n{literature_rules}\n\nQuestion: Should the edge from {source_pathway} to {target_pathway} be strengthened or weakened for this patient based on their mutation profile? Consider:\n1. Are any mutated genes in {mutated_genes} known regulators of either pathway?\n2. Do the literature-supported rules suggest perturbation?\n3. What is the expected effect on pathway activity?\n\nRespond with a gamma adjustment factor (0.5 to 1.5) and brief reasoning.",
+    "parameters": ["mutated_genes", "source_pathway", "target_pathway", "source_genes", "target_genes", "literature_rules"]
+  }
+}
