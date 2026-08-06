@@ -1,0 +1,50 @@
+# MuDAG-Pro dependency list
+# ====================
+# Core deep-learning framework
+torch>=2.0.0
+torch-geometric>=2.3.0
+
+# Scientific computing and data processing
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+
+# Survival analysis
+lifelines>=0.27.0
+scikit-survival>=0.22.0
+
+# Graph computing
+networkx>=3.1
+
+# LLM / RAG knowledge engine
+langchain>=0.1.0
+langchain-openai>=0.0.5
+openai>=1.6.0
+tiktoken>=0.5.0
+faiss-cpu>=1.7.4
+
+# PubMed literature retrieval
+biopython>=1.81
+requests>=2.31.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# SHAP interpretability
+shap>=0.42.0
+xgboost>=2.0.0
+
+# GSEA enrichment analysis
+gseapy>=1.0.0
+
+# Configuration and experiment management
+pyyaml>=6.0
+tqdm>=4.65.0
+
+# Evaluation metrics
+
+# Logging and utilities
+rich>=13.0.0

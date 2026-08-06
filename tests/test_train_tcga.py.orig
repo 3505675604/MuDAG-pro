@@ -1,0 +1,46 @@
+import pandas as pd
+import pytest
+
+from pipeline import train_tcga
+
+
+def test_load_tcga_clinical_data_normalizes_and_filters_training_cases(tmp_path):
+    raw = pd.DataFrame(
+        {
+            "case_id": ["TCGA-A", "TCGA-A", "TCGA-B", "TCGA-C"],
+            "slide_id": ["A-1", "A-2", "B-1", "C-1"],
+            "survival_months": [10.0, 10.0, 20.0, 30.0],
+            "censorship": [0, 0, 1, 0],
+            "train": [1.0, 1.0, 1.0, 0.0],
+        }
+    )
+    clinical_path = tmp_path / "tcga_brca.csv"
+    raw.to_csv(clinical_path, index=False)
+
+    assert hasattr(train_tcga, "load_tcga_clinical_data"), (
+        "training needs a loader that converts raw TCGA clinical metadata"
+    )
+
+    clinical = train_tcga.load_tcga_clinical_data(str(clinical_path))
+
+    assert clinical.index.tolist() == ["TCGA-A", "TCGA-B"]
+    assert clinical.index.name == "case_id"
+    assert clinical["event"].tolist() == [1.0, 0.0]
+    assert clinical["time"].tolist() == pytest.approx([304.4, 608.8])
+
+
+def test_load_tcga_clinical_data_accepts_standardized_schema(tmp_path):
+    standardized = pd.DataFrame(
+        {
+            "time": [100.0, 200.0],
+            "event": [1.0, 0.0],
+        },
+        index=pd.Index(["TCGA-A", "TCGA-B"], name="case_id"),
+    )
+    clinical_path = tmp_path / "clinical.csv"
+    standardized.to_csv(clinical_path)
+
+    assert hasattr(train_tcga, "load_tcga_clinical_data"), (
+        "training needs a loader that accepts normalized clinical metadata"
+    )
+
