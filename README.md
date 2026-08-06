@@ -113,6 +113,3 @@ python main.py --mode knowledge_refine
 
 ```
 ---
-## License
-This project is licensed under the MIT License. See the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
-```
