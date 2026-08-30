@@ -44,13 +44,13 @@ pip install torch-scatter torch-sparse torch-cluster torch-spline-conv -f [https
 ### 1. Download Raw Data
 Place the following datasets into their respective subdirectories under `data/raw/`:
 
-| Dataset | Samples | Data Types | Source |
+| Dataset  | Data Types | Source |
 | --- | --- | --- | --- |
-| TCGA-BRCA | 868 | Expression + Mutation + Clinical | [GDC Portal](https://portal.gdc.cancer.gov/) |
-| METABRIC | 1413 | Expression + Mutation + Clinical | [cBioPortal](https://www.cbioportal.org/) |
-| SCAN-B | 2449 | Expression + Clinical | [GEO GSE96058](https://www.ncbi.nlm.nih.gov/geo/) |
-| GEO GSE2034 | 286 | Expression + Clinical | [GEO GSE2034](https://www.ncbi.nlm.nih.gov/geo/) |
-| Reactome | — | Pathway Hierarchy | [Reactome Downloads](https://reactome.org/download-data/) |
+| TCGA-BRCA  | Expression + Mutation + Clinical | [GDC Portal](https://portal.gdc.cancer.gov/) |
+| METABRIC  | Expression + Mutation + Clinical | [cBioPortal](https://www.cbioportal.org/) |
+| SCAN-B  | Expression + Clinical | [GEO GSE96058](https://www.ncbi.nlm.nih.gov/geo/) |
+| GEO GSE2034  | Expression + Clinical | [GEO GSE2034](https://www.ncbi.nlm.nih.gov/geo/) |
+| Reactome |  Pathway Hierarchy | [Reactome Downloads](https://reactome.org/download-data/) |
 
 ### 2. Data Format Requirements
 --Gene Expression Profile-- (`expression.csv`):
